@@ -1,6 +1,6 @@
 package com.jwa.api.payload.request;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +25,7 @@ public class ItemRequestObject {
     private String userName;
     
     @NotNull
-    private Date duedate;
+    private LocalDate duedate;
     
     @NotNull
     private boolean recurring;
@@ -35,12 +35,12 @@ public class ItemRequestObject {
     
     private boolean enddate;
     
-    private Date endrecurring;
+    private LocalDate endrecurring;
     
     public ItemRequestObject() {}
     
-	public ItemRequestObject(String name, String description, int cost, Date duedate, boolean recurring,
-			RecurringType recurringsize, boolean enddate, Date endrecurring) {
+	public ItemRequestObject(String name, String description, int cost, LocalDate duedate, boolean recurring,
+			RecurringType recurringsize, boolean enddate, LocalDate endrecurring) {
 			this.name = name;
 			this.description = description;
 			this.cost = cost;
@@ -70,11 +70,11 @@ public class ItemRequestObject {
 		this.name = name;
 	}
 
-	public Date getDuedate() {
+	public LocalDate getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Date duedate) {
+	public void setDuedate(LocalDate duedate) {
 		this.duedate = duedate;
 	}
 
@@ -126,11 +126,11 @@ public class ItemRequestObject {
 		this.enddate = enddate;
 	}
 
-	public Date getEndrecurring() {
+	public LocalDate getEndrecurring() {
 		return endrecurring;
 	}
 
-	public void setEndrecurring(Date endrecurring) {
+	public void setEndrecurring(LocalDate endrecurring) {
 		this.endrecurring = endrecurring;
 	}
 

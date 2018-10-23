@@ -1,22 +1,23 @@
 package com.jwa.api.payload.response;
 
-import java.sql.Date;
+import java.time.LocalDate;
+
 import com.jwa.model.RecurringType;
 
 public class ItemResponseObject {
 	private String name;
 	private String description;
 	private int cost;
-    private Date duedate;
+    private LocalDate duedate;
     private boolean recurring;
     private RecurringType recurringsize;
     private boolean enddate;
-    private Date endrecurring;
+    private LocalDate endrecurring;
     
     public ItemResponseObject() {}
     
-	public ItemResponseObject(String name, String description, int cost, Date duedate, boolean recurring,
-		RecurringType recurringsize, boolean enddate, Date endrecurring) {
+	public ItemResponseObject(String name, String description, int cost, LocalDate duedate, boolean recurring,
+		RecurringType recurringsize, boolean enddate, LocalDate endrecurring) {
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
@@ -51,11 +52,11 @@ public class ItemResponseObject {
 		this.cost = cost;
 	}
 
-	public Date getDuedate() {
+	public LocalDate getDuedate() {
 		return duedate;
 	}
 
-	public void setDuedate(Date duedate) {
+	public void setDuedate(LocalDate duedate) {
 		this.duedate = duedate;
 	}
 
@@ -75,11 +76,11 @@ public class ItemResponseObject {
 		this.recurringsize = recurringsize;
 	}
 
-	public Date getEndrecurring() {
+	public LocalDate getEndrecurring() {
 		return endrecurring;
 	}
 
-	public void setEndrecurring(Date endrecurring) {
+	public void setEndrecurring(LocalDate endrecurring) {
 		this.endrecurring = endrecurring;
 	}
 

@@ -1,6 +1,6 @@
 package com.jwa.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,13 +19,12 @@ public class Dates{
     @Column(columnDefinition = "serial")
     private Long id;
     
-    @NotNull
-    private Date thedate;
+    private LocalDate thedate;
     
 	public Dates() {
 	}
     
-	public Dates(Date thedate) {
+	public Dates(LocalDate thedate) {
 		this.thedate = thedate;
 	}
 
@@ -33,11 +32,11 @@ public class Dates{
 		return id;
 	}
 	
-	public Date getThedate() {
+	public LocalDate getThedate() {
 		return thedate;
 	}
 
-	public void setThedate(Date thedate) {
+	public void setThedate(LocalDate thedate) {
 		this.thedate = thedate;
 	}
 

@@ -1,5 +1,6 @@
 package com.jwa.service;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -39,6 +40,8 @@ public class ItemService {
 	
 	@Transactional
 	public boolean addItem(ItemRequestObject ItemRequest, Item item) {
+		System.out.println(ItemRequest);
+		System.out.println(item);
     	if(ItemRequest.getCost() < 0) {
     		throw (new ApiError("Can't have negitive cost"));
     	}
@@ -54,9 +57,9 @@ public class ItemService {
 		item.setDescription(ItemRequest.getDescription());
 		item.setDuedate(addDate(ItemRequest.getDuedate()));
 		item.setRecurring(addRecurring(ItemRequest.getRecurringsize()));
-		if(!(ItemRequest.getEndrecurring() == null)) {
-			item.setEnddate(addDate(ItemRequest.getEndrecurring()));
-		}
+		item.setEnddate(addDate(ItemRequest.getEndrecurring()));
+		System.out.println("yes");
+		System.out.println(ItemRequest);
 		itemRepository.save(item);
 		return true;	
 	}
@@ -72,7 +75,7 @@ public class ItemService {
 	public List<ItemResponseObject> getItems(String userName){
 		User theUser = loadUser(userName);
 		boolean enddate;
-		Date endrecurring;
+		LocalDate endrecurring;
 		List<ItemResponseObject> ItemConent = new ArrayList<ItemResponseObject>();
 		for(Item item: theUser.getItems()) {
 			if(item.getEnddate() == null) {
@@ -126,14 +129,8 @@ public class ItemService {
 		return recurringOption.get();
 	}
 	
-	/**
-	 * 
-	 * @param date the date to reference in the DB
-	 * @return the date from the DB
-	 */
 	@Transactional
-	public Dates addDate(Date date) {
-		date = badFixForIssue(date); //bad temp fix
+	public Dates addDate(LocalDate date) {
 		System.out.println("date: "+ date);
 		Optional<Dates> dateOption = datesRepository.findByThedate(date);
 		System.out.println(dateOption);
@@ -146,21 +143,5 @@ public class ItemService {
 		else 
 			System.out.println("get: "+ dateOption.get());
 			return dateOption.get();
-	}
-	
-	/**
-	 * a bad temp fix for the issue of date being 1 date behind
-	 * @param date the date to change
-	 * @return date 1 day ahead
-	 */
-	public Date badFixForIssue(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		cal.add(Calendar.DAY_OF_YEAR,1);
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
-		return new Date(cal.getTimeInMillis());
 	}
 }
