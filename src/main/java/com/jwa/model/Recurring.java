@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 public class Recurring {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
     
     @NotNull
@@ -23,6 +25,13 @@ public class Recurring {
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     private RecurringType recurringsize;
+    
+	public Recurring() {}
+
+	public Recurring(boolean recurring, RecurringType recurringsize) {
+		this.recurring = recurring;
+		this.recurringsize = recurringsize;
+	}
 
 	public Long getId() {
 		return id;

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
 
     @Enumerated(EnumType.STRING)
