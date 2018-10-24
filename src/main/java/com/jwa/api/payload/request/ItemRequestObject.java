@@ -51,7 +51,7 @@ public class ItemRequestObject {
 			this.endrecurring = endrecurring;
 	}
 	public ItemRequestObject(ItemUpdateRequestObject changeRequest) {
-		this.name = changeRequest.getOldName();
+		this.name = changeRequest.getName();
 		this.userName = changeRequest.getUserName();
 		this.description = changeRequest.getDescription();
 		this.cost = changeRequest.getCost();

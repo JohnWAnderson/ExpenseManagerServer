@@ -40,8 +40,6 @@ public class ItemService {
 	
 	@Transactional
 	public boolean addItem(ItemRequestObject ItemRequest, Item item) {
-		System.out.println(ItemRequest);
-		System.out.println(item);
     	if(ItemRequest.getCost() < 0) {
     		throw (new ApiError("Can't have negitive cost"));
     	}
@@ -58,8 +56,6 @@ public class ItemService {
 		item.setDuedate(addDate(ItemRequest.getDuedate()));
 		item.setRecurring(addRecurring(ItemRequest.getRecurringsize()));
 		item.setEnddate(addDate(ItemRequest.getEndrecurring()));
-		System.out.println("yes");
-		System.out.println(ItemRequest);
 		itemRepository.save(item);
 		return true;	
 	}
@@ -131,17 +127,13 @@ public class ItemService {
 	
 	@Transactional
 	public Dates addDate(LocalDate date) {
-		System.out.println("date: "+ date);
 		Optional<Dates> dateOption = datesRepository.findByThedate(date);
-		System.out.println(dateOption);
 		if(!dateOption.isPresent()) {
 			Dates newDate = new Dates(date);
 			datesRepository.save(newDate);
-			System.out.println("newDate: "+ newDate);
 			return newDate;
 		}
 		else 
-			System.out.println("get: "+ dateOption.get());
 			return dateOption.get();
 	}
 }
