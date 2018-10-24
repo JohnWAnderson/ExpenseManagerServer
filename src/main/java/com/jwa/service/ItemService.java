@@ -74,7 +74,9 @@ public class ItemService {
 		LocalDate endrecurring;
 		List<ItemResponseObject> ItemConent = new ArrayList<ItemResponseObject>();
 		for(Item item: theUser.getItems()) {
-			if(item.getEnddate() == null) {
+			System.out.println(item.getEnddate());
+			System.out.println(item.getEnddate().getThedate());
+			if(item.getEnddate().getThedate() == null) {
 				endrecurring = null;
 				enddate=false;}
 			else{
