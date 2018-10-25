@@ -28,11 +28,23 @@ public class UserController {
     
     @GetMapping("/user/checkUsernameAvailable")
     public AvailableResponse checkUsernameAvailable(@RequestParam(value = "username") String username) {
-    	return userService.checkUsernameAvailable(username);
+    	try {
+			Thread.sleep(1000);
+	    	return userService.checkUsernameAvailable(username);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
     
     @GetMapping("/user/checkEmailAvailable")
     public AvailableResponse checkEmailAvailable(@RequestParam(value = "email") String email) {
-    	return userService.checkEmailAvailable(email);
+    	try {
+			Thread.sleep(1000);
+	    	return userService.checkEmailAvailable(email);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
 }

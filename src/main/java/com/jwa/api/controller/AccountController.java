@@ -19,11 +19,23 @@ public class AccountController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> signinUser(@Valid @RequestBody LoginRequestObject loginRequest) {
-        return userService.loginRequest(loginRequest);
+    	try {
+			Thread.sleep(1000);
+	        return userService.loginRequest(loginRequest);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
        
 	@PostMapping("/signup")
     public ResponseEntity<?> signupUser(@Valid @RequestBody SignUpRequestObject signUpRequest) {	
-		return userService.signupRequest(signUpRequest);
+    	try {
+			Thread.sleep(1000);
+			return userService.signupRequest(signUpRequest);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return null;
     }
 }
