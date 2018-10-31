@@ -15,7 +15,6 @@ public class Role {
     @Enumerated(EnumType.STRING)
     @NaturalId
     @Column(length = 10)
-    @NotBlank
     private RoleType name;
 
     public Role() {}
