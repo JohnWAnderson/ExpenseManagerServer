@@ -1,5 +1,10 @@
 package com.jwa.exception;
-
+/**
+ * 
+ * @author John Anderson
+ * 
+ * Error response object payload to give error information
+ */
 public class ErrorResponse {
 	private int status;
 	private String message;

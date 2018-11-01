@@ -1,8 +1,7 @@
 package com.jwa.service;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +22,10 @@ import com.jwa.repository.DatesRepository;
 import com.jwa.repository.ItemRepository;
 import com.jwa.repository.RecurringRepository;
 import com.jwa.repository.UserRepository;
+/**
+ * @author John Anderson
+ * Handles the item controller in spring service 
+ */
 
 @Service
 public class ItemService {
@@ -38,6 +41,12 @@ public class ItemService {
 	@Autowired
 	private DatesRepository datesRepository;
 	
+	/**
+	 * 
+	 * @param ItemRequest payload object with item information
+	 * @param item empty if non update and has existing item update
+	 * @return boolean if successful
+	 */
 	@Transactional
 	public boolean addItem(ItemRequestObject ItemRequest, Item item) {
     	if(ItemRequest.getCost() < 0) {
@@ -60,6 +69,10 @@ public class ItemService {
 		return true;	
 	}
 	
+	/**
+	 * @param itemUpdateRequest payload object with item information to update
+	 * @return  boolean if successful
+	 */
 	@Transactional
 	public boolean editItem(ItemUpdateRequestObject itemUpdateRequest) {
 		List<Item> theTaskList = itemRepository.findItemByUser(itemUpdateRequest.getOldName(), itemUpdateRequest.getUserName());
@@ -68,6 +81,10 @@ public class ItemService {
 		return addItem(updateItem, theItem);
 	}
 	
+	/**
+	 * @param userName of the current user
+	 * @return returns list of all items in Payload form
+	 */
 	public List<ItemResponseObject> getItems(String userName){
 		User theUser = loadUser(userName);
 		boolean enddate;
@@ -88,6 +105,11 @@ public class ItemService {
 		return ItemConent;
 	}
 	
+	/**
+	 * @param userName of the current user
+	 * @param itemName of the a item
+	 * @return boolean if Available
+	 */
 	public boolean checkItemNameAvailable(String userName, String itemName) {
 		User theUser = loadUser(userName);	
 		for(Item items: theUser.getItems()) {
@@ -97,6 +119,10 @@ public class ItemService {
 		return true;
 	}
 	
+	/**
+	 * @param theUser The current user object
+	 * @param ItemName the name of the item
+	 */
 	public void checkItem(User theUser, String ItemName) {
 		for(Item items: theUser.getItems()) {
 			if(items.getName().equals(ItemName)) 
@@ -104,6 +130,11 @@ public class ItemService {
 		}
 	}
 	
+	/**
+	 * @param name of the item
+	 * @param userName of the current user
+	 * @return boolean if successful
+	 */
 	public boolean deleteItem(String name, String userName) {
     	List<Item> theTaskList = itemRepository.findItemByUser(name, userName);
     	Item theItem = theTaskList.get(0);
@@ -111,6 +142,10 @@ public class ItemService {
 		return true;
 	}
 	
+	/**
+	 * @param UserName of the current user
+	 * @return returns the user
+	 */
 	public User loadUser(String UserName) {
 		Optional<User> userOption = userRepository.findByUsername(UserName);
 		if(!userOption.isPresent())
@@ -118,6 +153,10 @@ public class ItemService {
 		return userOption.get();
 	}
 	
+	/**
+	 * @param recurring enum typed recurring
+	 * @return the recurring model object type
+	 */
 	@Transactional
 	public Recurring addRecurring(RecurringType recurring) {
 		Optional<Recurring> recurringOption = recurringRepository.findByRecurringsize(recurring);
@@ -127,6 +166,10 @@ public class ItemService {
 		return recurringOption.get();
 	}
 	
+	/**
+	 * @param date in java date form
+	 * @return Dates model object
+	 */
 	@Transactional
 	public Dates addDate(LocalDate date) {
 		Optional<Dates> dateOption = datesRepository.findByThedate(date);

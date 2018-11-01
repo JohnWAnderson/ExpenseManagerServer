@@ -10,6 +10,12 @@ import javax.validation.constraints.Size;
 
 import com.jwa.model.RecurringType;
 
+/**
+ * 
+ * @author John Anderson
+ * 
+ * The request object for items to add
+ */
 public class ItemRequestObject {
 	@NotBlank
     @Size(max = 40)

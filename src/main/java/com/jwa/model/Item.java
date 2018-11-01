@@ -15,7 +15,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jwa.model.User;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * Item Model Object
+ */
 @Entity
 @Table(name = "items")
 public class Item {

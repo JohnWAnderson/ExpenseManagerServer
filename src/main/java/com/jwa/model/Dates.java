@@ -10,7 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * Date Model Object
+ */
 @Entity
 @Table(name = "dates")
 public class Dates{

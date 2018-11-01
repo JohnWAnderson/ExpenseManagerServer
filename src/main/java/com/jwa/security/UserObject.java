@@ -13,7 +13,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
-
+/**
+ * @author John Anderson
+ * Make a user object reference 
+ */
 public class UserObject implements UserDetails {
 	@NotBlank
     private Long id;

@@ -1,5 +1,11 @@
 package com.jwa.exception;
 
+/**
+ * 
+ * @author John Anderson
+ * 
+ * Custom error for api
+ */
 public class ApiError extends RuntimeException {
 
 	public ApiError(String arg0, Throwable arg1) {

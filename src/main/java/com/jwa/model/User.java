@@ -23,7 +23,12 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.NaturalId;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * User Model Object
+ */
 @Entity
 @Table(name = "users", 
 	uniqueConstraints = {

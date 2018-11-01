@@ -13,7 +13,13 @@ import com.jwa.model.RoleType;
 import com.jwa.repository.DatesRepository;
 import com.jwa.repository.RecurringRepository;
 import com.jwa.repository.RoleRepository;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * User for heroku and having it restart the server a lot, so need to load data in the first time, but not each time
+ * using a data.sql will load every time and case errors
+ */
 @Component
 public class HerokuDataLoad implements ApplicationRunner {
 

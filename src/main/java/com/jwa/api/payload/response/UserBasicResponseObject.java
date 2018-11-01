@@ -1,5 +1,12 @@
 package com.jwa.api.payload.response;
 
+
+/**
+ * 
+ * @author John Anderson
+ * 
+ * returns the basic user information for front end, also to make calls with user name
+ */
 public class UserBasicResponseObject {
     private String username;
     private String name;

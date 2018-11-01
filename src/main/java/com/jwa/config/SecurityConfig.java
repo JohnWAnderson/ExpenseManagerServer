@@ -18,7 +18,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.jwa.security.JwtAuthentication;
 import com.jwa.security.JwtAuthenticationFilter;
 import com.jwa.security.MyUserDetailsService;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ *	The security configuration 
+ *	sets what calls need jwt token or not
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(

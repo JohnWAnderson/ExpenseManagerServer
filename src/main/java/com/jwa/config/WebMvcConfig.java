@@ -3,7 +3,13 @@ package com.jwa.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+/**
+ * 
+ * @author John Anderson
+ * 
+ * Spring basic configuration
+ * Small max age for prototype
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 

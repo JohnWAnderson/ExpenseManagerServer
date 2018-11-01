@@ -15,7 +15,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+/**
+ * @author John Anderson
+ */
 public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	@Autowired
     private JwtToken jwtToken;
@@ -23,6 +25,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
+    /**
+     * internal filter for api 
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
@@ -41,6 +46,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * @param request https request for token
+     * @return returns the token
+     */
     private String getJwtRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer "))

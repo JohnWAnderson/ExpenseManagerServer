@@ -15,6 +15,9 @@ import io.jsonwebtoken.UnsupportedJwtException;
 
 import java.util.Date;
 
+/**
+ * @author John Anderson
+ */
 @Component
 public class JwtToken {
     @Value("${app.jwtSecret}")
@@ -23,6 +26,10 @@ public class JwtToken {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    /**
+     * @param authentication object of authentication
+     * @return String of jwt generated token
+     */
     public String generateToken(Authentication authentication) {
     	UserObject userPrincipal = (UserObject) authentication.getPrincipal();
         Date now = new Date();
@@ -30,14 +37,22 @@ public class JwtToken {
         return Jwts.builder().setSubject(Long.toString(userPrincipal.getId())).setIssuedAt(new Date()).setExpiration(expiryDate).signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
     }
 
+    /**
+     * @param token to find user from
+     * @return id of the user
+     */
     public Long getUserIdFromJWT(String token) {
         Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return Long.parseLong(claims.getSubject());
     }
-
-    public boolean validateToken(String authToken) {
+    
+    /**
+     * @param token the jwt token
+     * @return boolean if successful
+     */
+    public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (SignatureException e) {
             throw new ApiError("Invalid JWT signature");

@@ -4,6 +4,12 @@ import java.time.LocalDate;
 
 import com.jwa.model.RecurringType;
 
+/**
+ * 
+ * @author John Anderson
+ *
+ * The response payload for item information redux in front end
+ */
 public class ItemResponseObject {
 	private String name;
 	private String description;

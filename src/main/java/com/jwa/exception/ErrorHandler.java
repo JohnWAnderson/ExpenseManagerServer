@@ -4,7 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * AOP exception handler for api
+ */
 @ControllerAdvice
 public class ErrorHandler {
 	

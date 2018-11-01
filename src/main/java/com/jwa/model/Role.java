@@ -3,7 +3,12 @@ package com.jwa.model;
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
+/**
+ * 
+ * @author John Anderson
+ *
+ * Role Model Object
+ */
 @Entity
 @Table(name = "roles")
 public class Role {

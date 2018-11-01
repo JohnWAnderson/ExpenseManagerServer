@@ -1,5 +1,11 @@
 package com.jwa.api.payload.response;
 
+/**
+ * 
+ * @author John Anderson
+ *
+ * Boolean return if action is successful or not with message
+ */
 public class ApiResponseObject {
     private Boolean available;
     private String message;
