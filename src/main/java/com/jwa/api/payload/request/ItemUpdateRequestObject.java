@@ -38,6 +38,9 @@ public class ItemUpdateRequestObject {
     @NotNull
     private LocalDate duedate;
     
+    @NotBlank
+    private String group;
+    
     @NotNull
     private boolean recurring;
     
@@ -126,10 +129,21 @@ public class ItemUpdateRequestObject {
 		this.endrecurring = endrecurring;
 	}
 
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemUpdateRequestObject [name=" + name + ", oldName=" + oldName + ", description=" + description
-				+ ", cost=" + cost + ", userName=" + userName + ", duedate=" + duedate + ", recurring=" + recurring
-				+ ", recurringsize=" + recurringsize + ", enddate=" + enddate + ", endrecurring=" + endrecurring + "]";
+				+ ", cost=" + cost + ", userName=" + userName + ", duedate=" + duedate + ", group=" + group
+				+ ", recurring=" + recurring + ", recurringsize=" + recurringsize + ", enddate=" + enddate
+				+ ", endrecurring=" + endrecurring + "]";
 	}
+
+	
 }

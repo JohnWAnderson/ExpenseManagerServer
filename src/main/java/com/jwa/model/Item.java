@@ -60,6 +60,11 @@ public class Item {
     @JsonBackReference
     private Dates enddate;   
 	
+	@ManyToOne
+	@JoinColumn(name = "groups_id")
+    @JsonBackReference
+    private Groups group;
+	
 	public Item() {}
 
 	public Item(String name, String description, int cost) {
@@ -126,6 +131,14 @@ public class Item {
 
 	public void setEnddate(Dates enddate) {
 		this.enddate = enddate;
+	}
+
+	public Groups getGroup() {
+		return group;
+	}
+
+	public void setGroup(Groups group) {
+		this.group = group;
 	}
 
 	@Override

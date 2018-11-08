@@ -14,11 +14,13 @@ import com.jwa.api.payload.request.ItemUpdateRequestObject;
 import com.jwa.api.payload.response.ItemResponseObject;
 import com.jwa.exception.ApiError;
 import com.jwa.model.Dates;
+import com.jwa.model.Groups;
 import com.jwa.model.Item;
 import com.jwa.model.Recurring;
 import com.jwa.model.RecurringType;
 import com.jwa.model.User;
 import com.jwa.repository.DatesRepository;
+import com.jwa.repository.GroupsRepository;
 import com.jwa.repository.ItemRepository;
 import com.jwa.repository.RecurringRepository;
 import com.jwa.repository.UserRepository;
@@ -40,6 +42,9 @@ public class ItemService {
 	
 	@Autowired
 	private DatesRepository datesRepository;
+	
+	@Autowired 
+	private GroupsRepository groupsRepository;
 	
 	/**
 	 * 
@@ -63,6 +68,7 @@ public class ItemService {
 		item.setCost(ItemRequest.getCost());
 		item.setDescription(ItemRequest.getDescription());
 		item.setDuedate(addDate(ItemRequest.getDuedate()));
+		item.setGroup(addGroup(ItemRequest.getGroup()));
 		item.setRecurring(addRecurring(ItemRequest.getRecurringsize()));
 		item.setEnddate(addDate(ItemRequest.getEndrecurring()));
 		itemRepository.save(item);
@@ -90,16 +96,15 @@ public class ItemService {
 		boolean enddate;
 		LocalDate endrecurring;
 		List<ItemResponseObject> ItemConent = new ArrayList<ItemResponseObject>();
+		System.out.println(theUser.getItems());
 		for(Item item: theUser.getItems()) {
-			System.out.println(item.getEnddate());
-			System.out.println(item.getEnddate().getThedate());
 			if(item.getEnddate().getThedate() == null) {
 				endrecurring = null;
 				enddate=false;}
 			else{
 				enddate= true;
 				endrecurring = item.getEnddate().getThedate();}
-			ItemConent.add(new ItemResponseObject(item.getName(), item.getDescription(), item.getCost(), item.getDuedate().getThedate(), item.getRecurring().isRecurring(),
+			ItemConent.add(new ItemResponseObject(item.getName(), item.getDescription(), item.getCost(), item.getDuedate().getThedate(), item.getGroup().getGroup() , item.getRecurring().isRecurring(),
 					item.getRecurring().getRecurringsize(), enddate, endrecurring));
 		}
 		return ItemConent;
@@ -180,5 +185,21 @@ public class ItemService {
 		}
 		else 
 			return dateOption.get();
+	}
+	
+	/**
+	 * @param date in java date form
+	 * @return Dates model object
+	 */
+	@Transactional
+	public Groups addGroup(String group) {
+		Optional<Groups> GroupOption = groupsRepository.findByGroup(group);
+		if(!GroupOption.isPresent()) {
+			Groups newGroup = new Groups(group);
+			groupsRepository.save(newGroup);
+			return newGroup;
+		}
+		else 
+			return GroupOption.get();
 	}
 }

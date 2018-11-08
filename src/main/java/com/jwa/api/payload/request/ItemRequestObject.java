@@ -33,6 +33,9 @@ public class ItemRequestObject {
     @NotNull
     private LocalDate duedate;
     
+    @NotBlank
+    private String group;
+    
     @NotNull
     private boolean recurring;
     
@@ -45,12 +48,13 @@ public class ItemRequestObject {
     
     public ItemRequestObject() {}
     
-	public ItemRequestObject(String name, String description, int cost, LocalDate duedate, boolean recurring,
+	public ItemRequestObject(String name, String description, int cost, LocalDate duedate, String group, boolean recurring,
 			RecurringType recurringsize, boolean enddate, LocalDate endrecurring) {
 			this.name = name;
 			this.description = description;
 			this.cost = cost;
 			this.duedate = duedate;
+			this.group = group;
 			this.recurring = recurring;
 			this.recurringsize = recurringsize;
 			this.enddate = enddate;
@@ -62,6 +66,7 @@ public class ItemRequestObject {
 		this.description = changeRequest.getDescription();
 		this.cost = changeRequest.getCost();
 		this.duedate = changeRequest.getDuedate();
+		this.group = changeRequest.getGroup();
 		this.recurring = changeRequest.isRecurring();
 		this.recurringsize = changeRequest.getRecurringsize();
 		this.enddate = changeRequest.isEnddate();
@@ -140,11 +145,21 @@ public class ItemRequestObject {
 		this.endrecurring = endrecurring;
 	}
 
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemRequestObject [name=" + name + ", description=" + description + ", cost=" + cost + ", userName="
-				+ userName + ", duedate=" + duedate + ", recurring=" + recurring + ", recurringsize=" + recurringsize
-				+ ", enddate=" + enddate + ", endrecurring=" + endrecurring + "]";
+				+ userName + ", duedate=" + duedate + ", group=" + group + ", recurring=" + recurring
+				+ ", recurringsize=" + recurringsize + ", enddate=" + enddate + ", endrecurring=" + endrecurring + "]";
 	}
+
+	
 
 }

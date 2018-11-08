@@ -15,6 +15,7 @@ public class ItemResponseObject {
 	private String description;
 	private int cost;
     private LocalDate duedate;
+    private String group;
     private boolean recurring;
     private RecurringType recurringsize;
     private boolean enddate;
@@ -22,12 +23,13 @@ public class ItemResponseObject {
     
     public ItemResponseObject() {}
     
-	public ItemResponseObject(String name, String description, int cost, LocalDate duedate, boolean recurring,
+	public ItemResponseObject(String name, String description, int cost, LocalDate duedate, String group, boolean recurring,
 		RecurringType recurringsize, boolean enddate, LocalDate endrecurring) {
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
 		this.duedate = duedate;
+		this.group = group;
 		this.recurring = recurring;
 		this.recurringsize = recurringsize;
 		this.enddate = enddate;
@@ -98,10 +100,20 @@ public class ItemResponseObject {
 		this.enddate = enddate;
 	}
 
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemResponseObject [name=" + name + ", description=" + description + ", cost=" + cost + ", duedate="
-				+ duedate + ", recurring=" + recurring + ", recurringsize=" + recurringsize + ", enddate=" + enddate
-				+ ", endrecurring=" + endrecurring + "]";
+				+ duedate + ", group=" + group + ", recurring=" + recurring + ", recurringsize=" + recurringsize
+				+ ", enddate=" + enddate + ", endrecurring=" + endrecurring + "]";
 	}
+
+
 }
