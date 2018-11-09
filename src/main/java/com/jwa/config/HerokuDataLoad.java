@@ -6,11 +6,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import com.jwa.model.Dates;
+import com.jwa.model.Groups;
 import com.jwa.model.Recurring;
 import com.jwa.model.RecurringType;
 import com.jwa.model.Role;
 import com.jwa.model.RoleType;
 import com.jwa.repository.DatesRepository;
+import com.jwa.repository.GroupsRepository;
 import com.jwa.repository.RecurringRepository;
 import com.jwa.repository.RoleRepository;
 /**
@@ -29,7 +31,8 @@ public class HerokuDataLoad implements ApplicationRunner {
 	private RecurringRepository recurringRepository;
 	@Autowired	
 	private RoleRepository roleRepository;
-	
+	@Autowired
+	private GroupsRepository groupsRepository;
 	/**
 	 * Just for heroku because server restarts when not in use
 	 */
@@ -47,6 +50,10 @@ public class HerokuDataLoad implements ApplicationRunner {
     	if(roleRepository.count() == 0) {
     		roleRepository.save(new Role(RoleType.ROLE_USER));
     		roleRepository.save(new Role(RoleType.ROLE_ADMIN));
+    	}
+    	
+    	if(groupsRepository.count() ==0) {
+    		groupsRepository.save(new Groups("other"));
     	}
     }
 }

@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -63,7 +62,7 @@ public class Item {
 	@ManyToOne
 	@JoinColumn(name = "groups_id")
     @JsonBackReference
-    private Groups group;
+    private Groups igroup;
 	
 	public Item() {}
 
@@ -133,17 +132,17 @@ public class Item {
 		this.enddate = enddate;
 	}
 
-	public Groups getGroup() {
-		return group;
+	public Groups getIgroup() {
+		return igroup;
 	}
 
-	public void setGroup(Groups group) {
-		this.group = group;
+	public void setIgroup(Groups igroup) {
+		this.igroup = igroup;
 	}
 
 	@Override
 	public String toString() {
 		return "Item [id=" + id + ", name=" + name + ", description=" + description + ", cost=" + cost + "]";
 	}
-
+	
 }

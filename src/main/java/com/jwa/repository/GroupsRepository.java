@@ -9,5 +9,5 @@ import com.jwa.model.Groups;
 
 public interface GroupsRepository  extends JpaRepository<Groups, Long> {
 
-	Optional<Groups> findByGroup(String group);
+	Optional<Groups> findByThegroup(String thegroup);
 }

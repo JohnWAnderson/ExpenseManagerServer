@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "groups")
@@ -14,32 +14,31 @@ public class Groups {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(columnDefinition = "serial")
-    private Long id;
+    private Long id;  
     
-    @NotNull
-    private String group;
+    @NotBlank
+    private String thegroup;
     
-    public Groups() {}
-    
-	public Groups(String group) {
-		this.group = group;
+	public Groups() {}
+
+	public Groups(String thegroup) {
+		this.thegroup = thegroup;
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getGroup() {
-		return group;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setGroup(String group) {
-		this.group = group;
+	public String getThegroup() {
+		return thegroup;
 	}
 
-	@Override
-	public String toString() {
-		return "Groups [id=" + id + ", group=" + group + "]";
+	public void setThegroup(String thegroup) {
+		this.thegroup = thegroup;
 	}
     
 }

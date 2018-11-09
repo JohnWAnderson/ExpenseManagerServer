@@ -68,7 +68,7 @@ public class ItemService {
 		item.setCost(ItemRequest.getCost());
 		item.setDescription(ItemRequest.getDescription());
 		item.setDuedate(addDate(ItemRequest.getDuedate()));
-		item.setGroup(addGroup(ItemRequest.getGroup()));
+		item.setIgroup(addGroup(ItemRequest.getGroup()));
 		item.setRecurring(addRecurring(ItemRequest.getRecurringsize()));
 		item.setEnddate(addDate(ItemRequest.getEndrecurring()));
 		itemRepository.save(item);
@@ -104,7 +104,7 @@ public class ItemService {
 			else{
 				enddate= true;
 				endrecurring = item.getEnddate().getThedate();}
-			ItemConent.add(new ItemResponseObject(item.getName(), item.getDescription(), item.getCost(), item.getDuedate().getThedate(), item.getGroup().getGroup() , item.getRecurring().isRecurring(),
+			ItemConent.add(new ItemResponseObject(item.getName(), item.getDescription(), item.getCost(), item.getDuedate().getThedate(), item.getIgroup().getThegroup() , item.getRecurring().isRecurring(),
 					item.getRecurring().getRecurringsize(), enddate, endrecurring));
 		}
 		return ItemConent;
@@ -193,7 +193,7 @@ public class ItemService {
 	 */
 	@Transactional
 	public Groups addGroup(String group) {
-		Optional<Groups> GroupOption = groupsRepository.findByGroup(group);
+		Optional<Groups> GroupOption = groupsRepository.findByThegroup(group);
 		if(!GroupOption.isPresent()) {
 			Groups newGroup = new Groups(group);
 			groupsRepository.save(newGroup);
